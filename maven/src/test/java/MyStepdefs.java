@@ -38,6 +38,12 @@ public class MyStepdefs {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         logger.info("Window maximized");
+    }
+
+    // write a method in which you get the name of the logged user in order to use it for assertion
+
+    @Given("The existing user is on the login page")
+    public void theExistingUserIsOnTheLoginPage() {
         driver.get("https://demo.guru99.com/v4/index.php");
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.switchTo().frame("gdpr-consent-notice");
@@ -45,24 +51,29 @@ public class MyStepdefs {
         acceptCookies.click();
     }
 
-    // write a method in which you get the name of the logged user in order to use it for assertion
-    @Given("The existing user is on the login page")
-    public void theExistingUserIsOnTheLoginPage() {
-    }
-
     @When("Types {string}")
     public void types(String arg0) {
+        WebElement username = driver.findElement(By.name("uid"));
+        username.sendKeys(arg0);
     }
 
     @And("password {string}")
     public void password(String arg0) {
+        WebElement password = driver.findElement(By.name("password"));
+        password.sendKeys(arg0);
     }
 
     @And("clicks login")
     public void clicksLogin() {
+        WebElement loginButton = driver.findElement(By.name("btnLogin"));
+        loginButton.click();
     }
 
     @Then("is signed in succesfully")
     public void isSignedInSuccesfully() {
+        String expectedLogin = "Manger Id : mngr495031";
+        String actualLogin = driver.findElement(By.xpath("/html/body/table/tbody/tr/td/table/tbody/tr[3]/td")).getText();
+        assertEquals(expectedLogin, actualLogin);
+        driver.quit();
     }
 }
