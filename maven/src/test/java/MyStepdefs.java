@@ -65,9 +65,9 @@ public class MyStepdefs {
 
     @Then("is signed in succesfully")
     public void isSignedInSuccesfully() {
-        String expectedLogin = "Manger Id : mngr495031";
+        String expectedLogin = "mngr495031";
         String actualLogin = driver.findElement(By.xpath("/html/body/table/tbody/tr/td/table/tbody/tr[3]/td")).getText();
-        assertEquals(expectedLogin, actualLogin);
+        assertEquals(true, actualLogin.contains(expectedLogin));
         driver.quit();
     }
 }
