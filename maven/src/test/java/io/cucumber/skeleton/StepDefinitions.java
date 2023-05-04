@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IsItFriday {
-    // alternative code under development:
+    // alternative code *under development*:
 //    static Object isItFriday(String today) {
 //                if (today == "Friday") {
 //                    return "TGIF";
