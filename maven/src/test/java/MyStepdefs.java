@@ -39,9 +39,6 @@ public class MyStepdefs {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         logger.info("Window maximized");
     }
-
-    // write a method in which you get the name of the logged user in order to use it for assertion
-
     @Given("The existing user is on the login page")
     public void theExistingUserIsOnTheLoginPage() {
         driver.get("https://demo.guru99.com/v4/index.php");
@@ -50,19 +47,16 @@ public class MyStepdefs {
         WebElement acceptCookies = driver.findElement(By.xpath("//*[@id='save']/span[1]/div/span"));
         acceptCookies.click();
     }
-
     @When("Types {string}")
     public void types(String arg0) {
         WebElement username = driver.findElement(By.name("uid"));
         username.sendKeys(arg0);
     }
-
     @And("password {string}")
     public void password(String arg0) {
         WebElement password = driver.findElement(By.name("password"));
         password.sendKeys(arg0);
     }
-
     @And("clicks login")
     public void clicksLogin() {
         WebElement loginButton = driver.findElement(By.name("btnLogin"));
